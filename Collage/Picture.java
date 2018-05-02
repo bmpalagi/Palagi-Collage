@@ -251,4 +251,34 @@ public class Picture extends SimplePicture
             }
         }
     }
+  
+  public void copySmall(Picture sourcePicture, int tx, int ty, int scale)
+  {
+      Pixel sourcePixel = null;
+      Pixel targetPixel = null;
+      for(int sourceX = 200, targetX = tx;sourceX<800;sourceX+=scale,targetX++)
+      {
+          for (int sourceY = 200, targetY=ty; sourceY < 500; sourceY+=scale,targetY++)
+          {
+              sourcePixel = sourcePicture.getPixel(sourceX,sourceY);
+              targetPixel = this.getPixel(targetX,targetY);
+              targetPixel.setColor(sourcePixel.getColor());
+          }
+      }
+      
+    }
+  
+    
+  public void recursive(int scale)
+  {
+      if (scale==0)
+      {
+          return;
+        }
+      recursive(scale-1);
+      
+      Picture plz = new Picture("porsche.jpg");
+      
+      copySmall(plz,0,720,scale);
+    }
 } // this } is the end of class Picture, put all new methods before this

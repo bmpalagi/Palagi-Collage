@@ -13,7 +13,9 @@ public class mainFile
         Picture three = new Picture("porsche.jpg");
         three.Neapolitan();
         pic.copy(three,2560,0);
-        pic.copy("porsche.jpg",0,720);
+        
+        pic.recursive(9);
+        
         pic.copy("porsche.jpg",1280,720);
         pic.copy("porsche.jpg",2560,720);
         pic.copy("porsche.jpg",0,1440);
