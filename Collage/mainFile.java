@@ -14,10 +14,13 @@ public class mainFile
         three.Neapolitan();
         pic.copy(three,2560,0);
         
+        pic.copy("porsche.jpg",0,720);
         pic.recursive(9);
         
-        pic.copy("porsche.jpg",1280,720);
-        pic.copy("porsche.jpg",2560,720);
+        pic.copyOnTop("porsche.jpg","lambo.jpg",1280,720);
+        
+        pic.copyOnTopMyWay("porsche.jpg","lambo.jpg",2560,720);
+        
         pic.copy("porsche.jpg",0,1440);
         pic.copy("porsche.jpg",1280,1440);
         pic.copy("porsche.jpg",2560,1440);

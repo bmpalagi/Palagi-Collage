@@ -256,7 +256,7 @@ public class Picture extends SimplePicture
   {
       Pixel sourcePixel = null;
       Pixel targetPixel = null;
-      for(int sourceX = 200, targetX = tx;sourceX<800;sourceX+=scale,targetX++)
+      for(int sourceX = 200, targetX = tx;sourceX<1000;sourceX+=scale,targetX++)
       {
           for (int sourceY = 200, targetY=ty; sourceY < 500; sourceY+=scale,targetY++)
           {
@@ -268,7 +268,6 @@ public class Picture extends SimplePicture
       
     }
   
-    
   public void recursive(int scale)
   {
       if (scale==0)
@@ -281,4 +280,57 @@ public class Picture extends SimplePicture
       
       copySmall(plz,0,720,scale);
     }
+  
+  public void copyOnTop(String fileName, String fileName2, int tx, int ty)
+  {
+      String sourceFile = fileName;
+      String sourceFile2 = fileName2;
+      Picture sourcePicture = new Picture(sourceFile);
+      Picture sourcePicture2 = new Picture(sourceFile2);
+      
+      Pixel sourcePixel = null;
+      Pixel sourcePixel2 = null;
+      Pixel targetPixel = null;
+      for(int sourceX = 0, targetX = tx;sourceX<sourcePicture.getWidth();sourceX++,targetX++)
+      {
+          for (int sourceY = 0, targetY=ty; sourceY < sourcePicture.getHeight(); sourceY++,targetY++)
+          {
+              sourcePixel = sourcePicture.getPixel(sourceX,sourceY);
+              sourcePixel2 = sourcePicture2.getPixel(sourceX,sourceY);
+              targetPixel = this.getPixel(targetX,targetY);
+              targetPixel.setColor(new Color( (sourcePixel.getRed() + sourcePixel2.getRed())/2, (sourcePixel.getGreen()+sourcePixel2.getGreen())/2, (sourcePixel.getBlue()+sourcePixel2.getBlue())/2));
+          }
+      }
+      
+    }
+    
+  public void copyOnTopMyWay(String fileName, String fileName2, int tx, int ty)
+  {
+      String sourceFile = fileName;
+      String sourceFile2 = fileName2;
+      Picture sourcePicture = new Picture(sourceFile);
+      Picture sourcePicture2 = new Picture(sourceFile2);
+      
+      Pixel sourcePixel = null;
+      Pixel sourcePixel2 = null;
+      Pixel targetPixel = null;
+      for(int sourceX = 0, targetX = tx;sourceX<sourcePicture.getWidth();sourceX++,targetX++)
+      {
+          for (int sourceY = 0, targetY=ty; sourceY < sourcePicture.getHeight(); sourceY++,targetY++)
+          {
+              sourcePixel = sourcePicture.getPixel(sourceX,sourceY);
+              sourcePixel2 = sourcePicture2.getPixel(sourceX,sourceY);
+              targetPixel = this.getPixel(targetX,targetY);
+              
+              if (targetX%4==0)
+                    targetPixel.setColor(sourcePixel.getColor());
+              else
+                    targetPixel.setColor(sourcePixel2.getColor());
+          }
+      }
+      
+    }
+    
+    
+    
 } // this } is the end of class Picture, put all new methods before this
