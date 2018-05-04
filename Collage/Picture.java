@@ -89,7 +89,7 @@ public class Picture extends SimplePicture
 
   }
 
-  public void gray()
+  public void gray() 
   {
     //copies all the pixels into an array; not the best way because it uses much memory
       Pixel[] pixelArray = this.getPixels();
@@ -104,7 +104,7 @@ public class Picture extends SimplePicture
 
             avg = ((r+g+b)/3);
 
-            p.setColor(new Color(avg,avg,avg));
+            p.setColor(new Color(avg,avg,avg)); // by averaging the pixels rgb values it makes it gray
       }
 
   }
@@ -122,7 +122,7 @@ public class Picture extends SimplePicture
           {
               sourcePixel = sourcePicture.getPixel(sourceX,sourceY);
               targetPixel = this.getPixel(targetX,targetY);
-              targetPixel.setColor(sourcePixel.getColor());
+              targetPixel.setColor(sourcePixel.getColor()); //run through every pixel in the source file and transfer them onto the taget image
           }
       }
       
@@ -138,7 +138,7 @@ public class Picture extends SimplePicture
           {
               sourcePixel = sourcePicture.getPixel(sourceX,sourceY);
               targetPixel = this.getPixel(targetX,targetY);
-              targetPixel.setColor(sourcePixel.getColor());
+              targetPixel.setColor(sourcePixel.getColor()); // same as the other copy but this one takes a Picture object rather than string
           }
       }
       
@@ -167,7 +167,7 @@ public class Picture extends SimplePicture
           {
               leftPixel = getPixel(x,y);
               rightPixel = getPixel(width-1-x,y);
-              rightPixel.setColor(leftPixel.getColor());
+              rightPixel.setColor(leftPixel.getColor()); // puts the left side on the right side
             }
         }
       
@@ -187,7 +187,7 @@ public class Picture extends SimplePicture
         {
             topPixel = getPixel(x,y);
             bottomPixel = getPixel(x,height-1-y);
-            bottomPixel.setColor(topPixel.getColor());
+            bottomPixel.setColor(topPixel.getColor()); // puts the top on the bottom as well
         }
     }
     }
@@ -199,7 +199,7 @@ public class Picture extends SimplePicture
           for (int y = 0; y<getHeight();y++)
           {
               Pixel p = getPixel(x,y);
-              p.setColor(new Color(Math.abs(255-p.getRed()),Math.abs(255-p.getGreen()),Math.abs(255-p.getBlue())));
+              p.setColor(new Color(Math.abs(255-p.getRed()),Math.abs(255-p.getGreen()),Math.abs(255-p.getBlue()))); // absolute value of 355 minus the rgb values
             }
         }
       
@@ -209,11 +209,11 @@ public class Picture extends SimplePicture
   {
       this.mirrorVertical();
       this.mirrorHorizontal();
-      this.invertColors();
-      
+      this.invertColors(); 
+      //can call one method to call these three
     }
     
-  public void Neapolitan()
+  public void Neapolitan()//Loops go through one third of the image to change the color
   {
       for (int x = 0; x< (getWidth() / 3); x++)
       {
@@ -266,6 +266,7 @@ public class Picture extends SimplePicture
           }
       }
       
+      //used in my recursive method to crop the image and scale it down
     }
   
   public void recursive(int scale)
@@ -278,7 +279,7 @@ public class Picture extends SimplePicture
       
       Picture plz = new Picture("porsche.jpg");
       
-      copySmall(plz,0,720,scale);
+      copySmall(plz,0,720,scale); // calls the copySmall method with a smaller scale each time
     }
   
   public void copyOnTop(String fileName, String fileName2, int tx, int ty)
@@ -301,7 +302,7 @@ public class Picture extends SimplePicture
               targetPixel.setColor(new Color( (sourcePixel.getRed() + sourcePixel2.getRed())/2, (sourcePixel.getGreen()+sourcePixel2.getGreen())/2, (sourcePixel.getBlue()+sourcePixel2.getBlue())/2));
           }
       }
-      
+      //your copy on top idea
     }
     
   public void copyOnTopMyWay(String fileName, String fileName2, int tx, int ty)
@@ -328,7 +329,7 @@ public class Picture extends SimplePicture
                     targetPixel.setColor(sourcePixel2.getColor());
           }
       }
-      
+      //my copy on top idea
     }
     
     public void flip(Picture sourcePicture, int tx, int ty)
@@ -351,7 +352,7 @@ public class Picture extends SimplePicture
               targetPixel.setColor(sourcePixel.getColor());
           }
       }
-      
+      //180 degree rotation
     }
   
   public void blue(String fileName, int tx, int ty)
@@ -370,7 +371,7 @@ public class Picture extends SimplePicture
               targetPixel.setColor(new Color(sourcePixel.getRed(),sourcePixel.getGreen(),255));
           }
       }
-      
+      //make blue 255
     }
   
     public void green(String fileName, int tx, int ty)
@@ -389,6 +390,6 @@ public class Picture extends SimplePicture
               targetPixel.setColor(new Color(sourcePixel.getRed(),255,sourcePixel.getBlue()));
           }
       }
-      
+      //make green 255
     }
 } // this } is the end of class Picture, put all new methods before this

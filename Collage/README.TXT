@@ -1,6 +1,7 @@
 Brad Palagi
 
-Picture Collage Project
+Picture Collage Project // To see the final jpg image go to the Final Image folder
+    I couldn't figure out how to write the image into the Collage folder and had to create a new one.
 
 Top Left:
 
