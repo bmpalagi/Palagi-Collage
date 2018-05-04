@@ -331,6 +331,64 @@ public class Picture extends SimplePicture
       
     }
     
-    
-    
+    public void flip(Picture sourcePicture, int tx, int ty)
+  {
+      Pixel sourcePixel = null;
+      Pixel targetPixel = null;
+      Pixel temp = null;
+      
+      for(int sourceX = 0, targetX = tx, backX = sourcePicture.getWidth()-1;sourceX<sourcePicture.getWidth();sourceX++,targetX++,backX--)
+      {
+          for (int sourceY = 0, targetY=ty, backY = sourcePicture.getHeight()-1; sourceY < sourcePicture.getHeight(); sourceY++,targetY++,backY--)
+          {
+              sourcePixel = sourcePicture.getPixel(backX,backY);
+              temp = sourcePicture.getPixel(sourceX,sourceY);
+              targetPixel = this.getPixel(targetX,targetY);
+              targetPixel.setColor(sourcePixel.getColor());
+              
+              sourcePixel = sourcePicture.getPixel(sourceX,sourceY);
+              targetPixel = this.getPixel(backX,backY);
+              targetPixel.setColor(sourcePixel.getColor());
+          }
+      }
+      
+    }
+  
+  public void blue(String fileName, int tx, int ty)
+  {
+      String sourceFile = fileName;
+      Picture sourcePicture = new Picture(sourceFile);
+
+      Pixel sourcePixel = null;
+      Pixel targetPixel = null;
+      for(int sourceX = 0, targetX = tx;sourceX<sourcePicture.getWidth();sourceX++,targetX++)
+      {
+          for (int sourceY = 0, targetY=ty; sourceY < sourcePicture.getHeight(); sourceY++,targetY++)
+          {
+              sourcePixel = sourcePicture.getPixel(sourceX,sourceY);
+              targetPixel = this.getPixel(targetX,targetY);
+              targetPixel.setColor(new Color(sourcePixel.getRed(),sourcePixel.getGreen(),255));
+          }
+      }
+      
+    }
+  
+    public void green(String fileName, int tx, int ty)
+  {
+      String sourceFile = fileName;
+      Picture sourcePicture = new Picture(sourceFile);
+
+      Pixel sourcePixel = null;
+      Pixel targetPixel = null;
+      for(int sourceX = 0, targetX = tx;sourceX<sourcePicture.getWidth();sourceX++,targetX++)
+      {
+          for (int sourceY = 0, targetY=ty; sourceY < sourcePicture.getHeight(); sourceY++,targetY++)
+          {
+              sourcePixel = sourcePicture.getPixel(sourceX,sourceY);
+              targetPixel = this.getPixel(targetX,targetY);
+              targetPixel.setColor(new Color(sourcePixel.getRed(),255,sourcePixel.getBlue()));
+          }
+      }
+      
+    }
 } // this } is the end of class Picture, put all new methods before this
